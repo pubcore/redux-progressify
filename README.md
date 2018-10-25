@@ -9,8 +9,8 @@ Knowledge of redux-actions and -reducers, usage of middleware for promises
 		//assume we have a promise "loadSomeData"
 
 		//we may implement an action loadSomeData promise is used.
-		//just cover the call with "promisify":
-		export default dispatch => promisify(dispatch,
+		//just cover the call with "progressify":
+		export default dispatch => progressify(dispatch,
 			loadSomeData.then(
 				res => {
 					//[...] dispatch result
