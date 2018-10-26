@@ -1,4 +1,11 @@
-## Prerequiste
+
+Simple, redux based way to maintain progress of asynchronous functions (promises).
+Used in context of user-interfaces, this state can be used to show some "wait spinner".  
+
+If there are further, nested progressified promisses, progress is increase by one
+for each pending promise, and decrease by one for each resolved or rejected.
+
+## Prerequisite
 Knowledge of redux-actions and -reducers, usage of middleware for promises
 
 ## Example
@@ -8,17 +15,11 @@ Knowledge of redux-actions and -reducers, usage of middleware for promises
 
 		//assume we have a promise "loadSomeData"
 
-		//we may implement an action loadSomeData promise is used.
-		//just cover the call with "progressify":
+		//We may implement an action the loadSomeData-promise is used in.
+		//To get info about its progress within state, we just cover the 
+		//call with "progressify":
 		export default dispatch => progressify(dispatch,
-			loadSomeData.then(
-				res => {
-					//[...] dispatch result
-				},
-				err => {
-					//[...] dispatch error
-				}
-			)
+			loadSomeData.then(mapResult, mapError)
 		)
 
 #### reducer
