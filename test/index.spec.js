@@ -17,10 +17,10 @@ describe('progressify', () => {
 			() => expect(slice).to.equal(0)
 		)
 	)
-	it('throws error, if there is an unhandled rejection', () => {
-		progressify(dispatch, Promise.reject()).then(
+	it('rejects error, if given promise rejects', () => {
+		progressify(dispatch, Promise.reject('test')).then(
 			()=>{throw 'unexpected resolve'},
-			err => expect(err.message).to.equal('UnhandledPromiseRejectionWarning')
+			err => expect(err).to.equal('test')
 		)
 	})
 	it('keep process equal or greater than 0', () => {

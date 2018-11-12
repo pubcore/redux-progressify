@@ -7,8 +7,10 @@ export default (dispatch, promise) => {
 			dispatch({type:'PROGRESS_STOP'})
 			return res
 		},
-		//Unhandled promise rejections are deprecated
-		() => {throw Error('UnhandledPromiseRejectionWarning')}
+		rej => {
+			dispatch({type:'PROGRESS_STOP'})
+			return Promise.reject(rej)
+		}
 	)
 }
 
